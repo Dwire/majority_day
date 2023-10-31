@@ -24,9 +24,24 @@ function calculateMajorityDate() {
     // Calculate the majority date
     const majorityDate = new Date(dob.getTime() + majorityTime);
 
+    // Calculate age at majority date and time already been friends
+    const ageAtMajority = calculateAge(dob, majorityDate);
+    const timeBeenFriends = calculateFriendshipDuration(dateMet, new Date());
+
     // Display the result
     const resultDateStr = majorityDate.toDateString();
-    document.getElementById('result').innerText = `You will have known ${friendsName} for the majority of your life on: ` + resultDateStr;
+    document.getElementById('result').innerHTML = `
+      You will have known ${friendsName} for the majority of your life on: ${resultDateStr}
+      <br>
+      <br>
+      <br>
+      Other Milestones:
+      <br>
+      You will be ${ageAtMajority} years old on this day.<br>
+      You have already been friends for ${timeBeenFriends} years.
+    `;
+
+
 
     // Enable the "Add to Calendar" button and pass the majority date
     const addToCalendarButton = document.getElementById('addToCalendar');
@@ -40,6 +55,25 @@ function calculateMajorityDate() {
     shareToSocialButton.onclick = function() {
         share();
     };
+
+    function calculateAge(dob, date) {
+        let age = date.getFullYear() - dob.getFullYear();
+        const m = date.getMonth() - dob.getMonth();
+        if (m < 0 || (m === 0 && date.getDate() < dob.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+    function calculateFriendshipDuration(dateMet, currentDate) {
+        let duration = currentDate.getFullYear() - dateMet.getFullYear();
+        const m = currentDate.getMonth() - dateMet.getMonth();
+        if (m < 0 || (m === 0 && currentDate.getDate() < dateMet.getDate())) {
+            duration--;
+        }
+        return duration;
+    }
+
 }
 
 function addToCalendar(majorityDate, resultDateStr, friendsName) {
