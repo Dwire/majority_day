@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Majority Friendship Date Calculator</title>
+// script tags to include the JavaScript files
+<script src="index.js"></script>
+</head>
+<body>
+
+<h2>Calculate Majority Friendship Date</h2>
+
+<label for="dob">Your Date of Birth:</label>
+<input type="date" id="dob" name="dob">
+<br><br>
+
+<label for="friendsName">Friend's Name:</label>
+<input type="text" id="friendsName" name="friendsName">
+<br><br>
+
+<label for="dateMet">Date You Met Your Friend:</label>
+<input type="date" id="dateMet" name="dateMet">
+<br><br>
+
+<button onclick="calculateMajorityDate()">Calculate</button>
+<br><br>
+
+<div id="result"></div>
+<br>
+
+<!-- The button is disabled until a date is calculated -->
+<button id="addToCalendar" disabled>Add to Calendar</button>
+<button id="shareToSocial" disabled>Share to Social</button>
+
+</body>
+</html>
